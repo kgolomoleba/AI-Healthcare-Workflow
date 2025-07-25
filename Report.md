@@ -151,3 +151,24 @@ These metrics balance identifying true readmissions while minimizing false alarm
 **Early Stopping:** Monitor validation loss during training and halt training once the loss stops improving to prevent the model from overfitting on training data. Additionally, tune regularization parameters (e.g., L1/L2 penalties) and use cross-validation to ensure generalizability.
 
 ---
+# Part 3: Critical Thinking
+
+## Ethics & Bias (10 points)
+
+### Impact of Biased Training Data on Patient Outcomes  
+Biased training data can lead to unfair or inaccurate predictions for certain patient groups. For example, if minority populations or certain age groups are underrepresented, the model may perform poorly for these patients, leading to misclassification of their readmission risk. This can result in inadequate care plans or missed interventions, exacerbating healthcare disparities and negatively impacting patient outcomes.
+
+### Strategy to Mitigate Bias  
+One effective strategy is **data augmentation and re-sampling** to balance the dataset by oversampling underrepresented groups or applying synthetic data generation techniques (e.g., SMOTE). Additionally, incorporating fairness-aware algorithms and using fairness metrics during model evaluation can help detect and correct biases before deployment.
+
+---
+
+## Trade-offs (10 points)
+
+### Model Interpretability vs Accuracy in Healthcare  
+There is often a trade-off between choosing highly accurate but complex "black-box" models (like deep neural networks or ensemble methods) and simpler, more interpretable models (like logistic regression or decision trees). In healthcare, interpretability is critical for clinician trust and regulatory compliance, as practitioners need to understand model decisions to ensure patient safety. However, sacrificing some accuracy for explainability might reduce predictive performance. Striking a balance is essential, often favoring models that provide explanations alongside reasonable accuracy.
+
+### Impact of Limited Computational Resources on Model Choice  
+Hospitals with limited computational infrastructure may need to prioritize lightweight models that require less processing power and memory. This constraint could limit the use of computationally expensive models like deep learning. Instead, simpler algorithms such as logistic regression, decision trees, or small ensemble methods may be preferred for their efficiency and faster inference times, enabling real-time predictions without heavy hardware demands.
+
+---
