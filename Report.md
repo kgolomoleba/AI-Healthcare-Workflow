@@ -67,3 +67,87 @@ Concept drift occurs when the statistical properties of input data change over t
 ### Technical Deployment Challenge:  
 **Scalability** — Ensuring the model can process large volumes of student data in near real-time during enrollment periods without performance bottlenecks.
 
+---
+# Part 2: Case Study Application — Predicting Patient Readmission Risk
+
+## Problem Scope (5 points)
+
+### Problem Definition:  
+Predict whether a patient discharged from the hospital will be readmitted within 30 days, enabling early intervention to reduce avoidable readmissions.
+
+### Objectives:  
+1. Accurately identify patients at high risk of readmission within 30 days.  
+2. Support healthcare providers with actionable insights for personalized care plans.  
+3. Reduce hospital readmission rates by at least 10% within one year.
+
+### Stakeholders:  
+- Patients (whose care outcomes depend on accurate risk prediction)  
+- Healthcare providers and hospital administration (decision-makers in patient care and resource allocation)
+
+---
+
+## Data Strategy (10 points)
+
+### Proposed Data Sources:  
+1. **Electronic Health Records (EHRs):** Patient medical history, diagnosis codes, treatment details, previous admissions.  
+2. **Demographic Data:** Age, gender, socioeconomic status, lifestyle factors (smoking, alcohol use).  
+
+### Ethical Concerns:  
+1. **Patient Privacy and Confidentiality:** Handling sensitive health data requires strict compliance with laws like HIPAA to protect patient identity and prevent unauthorized access.  
+2. **Bias and Fairness:** Data may underrepresent certain demographic groups, risking unequal prediction accuracy and potential healthcare disparities.
+
+### Preprocessing Pipeline:  
+- **Data Cleaning:** Remove duplicates, handle missing values (imputation with median or domain-informed defaults).  
+- **Feature Engineering:**  
+  - Extract comorbidity scores from diagnosis codes (e.g., Charlson Comorbidity Index).  
+  - Calculate time since last admission.  
+  - Derive medication adherence indicators.  
+- **Encoding:** Convert categorical variables (e.g., diagnosis types) using one-hot encoding.  
+- **Normalization:** Scale numeric features like age and lab results.  
+- **Train-Test Split:** Stratify by readmission outcome to maintain class balance.
+
+---
+
+## Model Development (10 points)
+
+### Model Selection and Justification:  
+**Gradient Boosting Machine (e.g., XGBoost)** is chosen for its strong predictive performance on tabular medical data, ability to handle missing values, and interpretability through feature importance.
+
+### Confusion Matrix (Hypothetical):
+
+|                   | Predicted Readmit | Predicted No Readmit |
+|-------------------|-------------------|---------------------|
+| **Actual Readmit** | 85 (True Positive) | 15 (False Negative)  |
+| **Actual No Readmit** | 20 (False Positive) | 180 (True Negative) |
+
+### Precision and Recall:  
+- Precision = TP / (TP + FP) = 85 / (85 + 20) = 0.81  
+- Recall = TP / (TP + FN) = 85 / (85 + 15) = 0.85  
+
+These metrics balance identifying true readmissions while minimizing false alarms.
+
+---
+
+## Deployment (10 points)
+
+### Integration Steps:  
+1. **Model Packaging:** Convert the trained model into a deployable format (e.g., REST API using Flask or FastAPI).  
+2. **System Integration:** Connect the API with hospital EHR systems for real-time risk scoring.  
+3. **User Interface:** Develop dashboards for clinicians displaying patient risk scores and recommended actions.  
+4. **Testing and Validation:** Perform integration and user acceptance testing with clinical staff.  
+5. **Monitoring:** Implement logging and alerts to track model performance and data drift.
+
+### Ensuring Healthcare Compliance (e.g., HIPAA):  
+- Enforce data encryption both at rest and in transit.  
+- Use role-based access control limiting data access to authorized personnel.  
+- Maintain detailed audit logs of data usage and model predictions.  
+- Conduct regular compliance audits and update privacy policies as required.
+
+---
+
+## Optimization (5 points)
+
+### Method to Address Overfitting:  
+**Early Stopping:** Monitor validation loss during training and halt training once the loss stops improving to prevent the model from overfitting on training data. Additionally, tune regularization parameters (e.g., L1/L2 penalties) and use cross-validation to ensure generalizability.
+
+---
