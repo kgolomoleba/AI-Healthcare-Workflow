@@ -172,3 +172,34 @@ There is often a trade-off between choosing highly accurate but complex "black-b
 Hospitals with limited computational infrastructure may need to prioritize lightweight models that require less processing power and memory. This constraint could limit the use of computationally expensive models like deep learning. Instead, simpler algorithms such as logistic regression, decision trees, or small ensemble methods may be preferred for their efficiency and faster inference times, enabling real-time predictions without heavy hardware demands.
 
 ---
+# Part 4: Reflection & Workflow Diagram
+
+## Reflection (5 points)
+
+### Most Challenging Part of the Workflow  
+The most challenging part of the AI development workflow was the **data preprocessing and cleaning stage**. This step required careful handling of missing values, outliers, and data inconsistencies to ensure the model receives quality inputs. The complexity arises because real-world data is often noisy and unstructured, which can significantly impact model performance if not addressed properly. Additionally, balancing ethical considerations while maintaining data utility added another layer of difficulty.
+
+### Improvements with More Time and Resources  
+With more time and resources, I would focus on:
+
+- **Enhanced Data Collection:** Gather more diverse and comprehensive datasets to reduce bias and improve model generalization.
+- **Advanced Feature Engineering:** Use domain experts to create meaningful features that capture complex relationships.
+- **Robust Validation:** Implement cross-validation and continuous monitoring systems to detect issues like concept drift early.
+- **Collaborative Tools:** Employ version control and collaborative platforms for seamless teamwork and code management.
+- **Ethical Audits:** Conduct regular audits using fairness toolkits to continually assess and mitigate bias.
+
+---
+
+## Diagram (5 points)
+
+### AI Development Workflow Flowchart
+
+```mermaid
+flowchart TD
+    A[Problem Definition] --> B[Data Collection]
+    B --> C[Data Preprocessing]
+    C --> D[Model Development]
+    D --> E[Model Evaluation]
+    E --> F[Deployment]
+    F --> G[Monitoring & Maintenance]
+    G --> C
